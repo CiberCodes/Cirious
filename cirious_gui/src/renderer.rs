@@ -83,7 +83,7 @@ pub fn render_button(
         .expect("Erro inexperado ao renderizar a textura.");
 
     Button {
-        location: image
+        location: button
     }
 }
 
