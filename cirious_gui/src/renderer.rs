@@ -44,13 +44,6 @@ pub fn render_image(
         canvas_height as i32 / 2
     );
 
-    let sprite = Rect::new(
-        sprite.0,
-        sprite.1,
-        sprite.2 as u32,
-        sprite.3 as u32
-    );
-
     let image = Rect::from_center(
         screen_position,
         width as u32,
