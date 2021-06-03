@@ -51,7 +51,7 @@ pub fn render_image(
         height as u32
     );
 
-    canvas.copy(&texture, sprite, &image)
+    canvas.copy(&texture, sprite, image)
         .expect("Erro inexperado ao renderizar textura.");
 
     Image {
