@@ -95,11 +95,4 @@ impl Window {
             FullscreenType::convert(fullscreen)
         );
     }
-
-    pub fn get_event(&mut self) -> EventPollIterator {
-        let mut event_pump = self.sdl.event_pump()
-            .expect("Não foi possivel encontrar eventos.");
-
-        event_pump.poll_iter()
-    }
 }
