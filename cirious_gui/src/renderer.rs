@@ -4,6 +4,7 @@ use sdl2::image::LoadTexture;
 use sdl2::rect::{Point, Rect};
 use sdl2::ttf::FontStyle;
 use sdl2::pixels::Color;
+use crate::widgets::{Button, Image, Text};
 
 macro_rules! rect(
     ($x:expr, $y:expr, $w:expr, $h:expr) => (
@@ -35,7 +36,7 @@ pub fn render_image(
     sprite: Rect,
     width : i32,
     height: i32,
-) {
+) -> Image {
     let (canvas_width, canvas_height) = canvas.output_size()
         .expect("Falha ao ler o tamanho do canvas.");
 
@@ -50,8 +51,12 @@ pub fn render_image(
         height as u32
     );
 
-    canvas.copy(&texture, sprite, image)
+    canvas.copy(&texture, sprite, &image)
         .expect("Erro inexperado ao renderizar textura.");
+
+    Image {
+        location: image
+    }
 }
 
 pub fn render_button(
@@ -59,7 +64,7 @@ pub fn render_button(
     texture: &Texture,
     position: Point,
     size: (u32, u32)
-) {
+) -> Button {
     let (canvas_width, canva_height) = canvas.output_size()
         .expect("Falha ao obter o tamanho do canvas.");
 
@@ -76,6 +81,10 @@ pub fn render_button(
 
     canvas.copy(&texture, None, button)
         .expect("Erro inexperado ao renderizar a textura.");
+
+    Button {
+        location: image
+    }
 }
 
 fn get_centered_rect(
@@ -136,7 +145,7 @@ pub fn render_font(
     canvas: &mut WindowCanvas,
     texture: &Texture,
     position: Point,
-) {
+) -> Text {
     let (canvas_width, canvas_height) = canvas.output_size()
         .expect("Falha ao ler o tamanho do canvas.");
 
@@ -155,4 +164,8 @@ pub fn render_font(
 
     canvas.copy(&texture, None, text)
         .expect("Erro inexperado ao renderizar textura.");
+
+    Text {
+        location: text,
+    }
 }
