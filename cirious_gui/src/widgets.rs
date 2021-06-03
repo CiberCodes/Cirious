@@ -6,13 +6,13 @@ use sdl2::ttf::FontStyle;
 use sdl2::pixels::Color;
 
 pub struct Button {
-    pub location: Rect
+    pub canvas: WindowCanvas,
+    pub location: Rect,
 }
 
 impl Button {
     pub fn add_text(
-        &self,
-        canvas: &mut WindowCanvas,
+        &mut self,
         font_path: &Path,
         text: &str,
         size: u16,
@@ -20,7 +20,7 @@ impl Button {
         color: Color
     ) {
         render_text(
-            canvas,
+            &mut self.canvas,
             font_path,
             text,
             size,
