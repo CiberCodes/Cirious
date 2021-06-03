@@ -25,7 +25,7 @@ impl FullscreenType {
 
 impl Window {
     pub fn new(
-        &self, title: &str,
+        title: &str,
         width: u32,
         heigth: u32,
         borderless: bool
