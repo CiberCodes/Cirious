@@ -28,17 +28,39 @@ impl Window {
         title: &str,
         width: u32,
         heigth: u32,
-        borderless: bool
+        borderless: bool,
+        resizeable: book,
     ) -> Result<Window, String> {
         let sdl = sdl2::init()?;
         let video_subsystem = sdl.video()?;
 
-        let mut window = sdl2::video::WindowBuilder::new(
-            &video_subsystem,
-            title,
-            width,
-            heigth
-        ).opengl().position_centered().build().map_err(|e| e.to_string())?;
+        let mut window: sdl2::video::Window;
+
+        if resizeable {
+            window = sdl2::video::WindowBuilder::new(
+                &video_subsystem,
+                title,
+                width,
+                heigth
+            )
+                .opengl()
+                .resizable()
+                .position_centered()
+                .build()
+                .map_err(|e| e.to_string())?;
+        }
+        else {
+            window = sdl2::video::WindowBuilder::new(
+                &video_subsystem,
+                title,
+                width,
+                heigth
+            )
+                .opengl()
+                .position_centered()
+                .build()
+                .map_err(|e| e.to_string())?;
+        }
 
         window.set_bordered(borderless);
 
