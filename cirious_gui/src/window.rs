@@ -29,7 +29,7 @@ impl Window {
         width: u32,
         heigth: u32,
         borderless: bool,
-        resizeable: book,
+        resizeable: bool,
     ) -> Result<Window, String> {
         let sdl = sdl2::init()?;
         let video_subsystem = sdl.video()?;
